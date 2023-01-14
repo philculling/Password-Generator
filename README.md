@@ -4,15 +4,26 @@ Week 5 Challenge
 
 ## Overview
 
-This week’s challenge requires you to create an application that an employee can use to generate a random password based on criteria they’ve selected by modifying starter code. This app will run in the browser, and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean and polished user interface that is responsive, ensuring that it adapts to multiple screen sizes.
-
 The password can include special characters. If you’re unfamiliar with these, see this [list of Password Special Characters from the OWASP Foundation](https://www.owasp.org/index.php/Password_special_characters).
 
 ## Instructions
 
-1. Initial commit.
-2. Look through the code that's already there and learn from it.
-3. Make a plan, not necessarily the whole thing, maybe just the first couple of items.
+WORK DOWN but think up.
+The last line of code is what executes. Follow the logic UPWARDS.
+So what is currently my line 152 will make the function writePassword happen.
+Then refer to line 144.
+The function writePassword will make the function generatePassword happen.
+Then refer to line 136.
+The function generatePassword will do a number of things. This is now where your challenge starts. One of the things is does is to call the function called getPasswordOptions. I know this because Laura showed us. There is likely to be more than just that though.
+So go up again, refer to line 106.
+This is where the computer collects the options from the user.
+Perhaps there are functions in here, if not for the length, then definitely for the other 4 things - do you want numbers?, do you want lower case?, do you want upper case?, do you want specials? DRY. This is asking the same question 4 times. For the length, you've kind of nearly worked it out already, you just need to get it into the function.
+
+This was what you in the middle of trying to do, but you were not thinking enough about functions, and working upwards.
+Laura says get the structure of functions sorted.
+
+Some sort of loop that will be (number of characters selected) long, and will select any random element from ALL of the selected arrays and log the answer in the place it is needed.
+
 
 The following image shows the web application's appearance and functionality:
 
@@ -24,13 +35,13 @@ MY NOTE Day 2 activity 5 might be useful.
   * Present a series of prompts for password criteria
     * Length of password. i.e. a prompt asking how many characters would you like your password to contain? The user inputs a number. If too small or large, they get another prompt saying to try again e.g. 7 is too few or 129 is too many.
       * At least 10 characters but no more than 64.
-      If your password is 16 characters long, you will need to set up a loop that iterates 16 times selecting random elements from all the selected arrays. If your password is 24 characters long, you will need to set up a loop that iterates 24 times, etc., etc.
     * Character types
       * Lowercase
       * Uppercase
       * Numeric
       * Special characters ($@%&*, etc)
-  * Code should validate for each input and at least one character type should be selected
+      If your password is 16 characters long, you will need to set up a loop that iterates 16 times selecting random elements from all the selected arrays. If your password is 24 characters long, you will need to set up a loop that iterates 24 times, etc., etc.
+ * Code should validate for each input and at least one character type should be selected
   * Once prompts are answered then the password should be generated and displayed in an alert or written to the page
 
 ## Grading Requirements
