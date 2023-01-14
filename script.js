@@ -101,6 +101,13 @@ var lowerCase = "";
 var upperCase = "";
 var specials = "";
 var numerics = "";
+var mergedArray = "";
+
+function mergeArrays(arr) {
+  if (arr === true) {
+    mergedArray = mergedArray.push(arr);
+  }
+}
 
 function getPasswordOptions() {
   var length = prompt("Welcome to your password generator! How many characters would you like your password to have? Choose a number between 8 and 64 inclusive.");
@@ -111,9 +118,8 @@ function getPasswordOptions() {
   else if (length != type.number) {
     alert("Invalid. Please enter a number");//This needs another look
   }
-//length is now stored.
-}
-//Global variables true or false as Laura suggested.
+//length is now stored. I think...
+
   var lowerCase = confirm("Would you like your password to include lower case characters?");
 //lowerCase is now stored as either true or false
   
@@ -125,17 +131,18 @@ function getPasswordOptions() {
 
   var numerics = confirm("Would you like your password to include numeric characters?");
 //numerics is now stored as either true or false
-/*
-if lowerCase is true and upperCase is false and specials is false and 
-numerics is false, var finalArray = numericCharacters
-else if lowerCase is 
-*/
+
+mergeArrays(lowerCase);
+mergeArrays(upperCase);
+mergeArrays(specials);
+mergeArrays(numerics);
+}
 
 // Function for getting a random element from an array
-/*Set up something that will select random elements from an array
-*/
 function getRandom(arr) {
-
+//Hopefully this will be simple. 2 parts to this.
+//1. Randomising our mergedArray.
+//2. Making sure it's the right length.
 }
 
 // Function to generate password with user input
@@ -145,6 +152,7 @@ getRandom(arr) applied to the merged array.
 */
 function generatePassword() {
 getPasswordOptions();
+getRandom(mergedArray);
 }
 // DO NOT TOUCH ANYTHING BELOW HERE
 // Get references to the #generate element
