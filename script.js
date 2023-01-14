@@ -143,8 +143,10 @@ function getRandom(arr) {
 //Hopefully this will be simple. 2 parts to this.
 //1. Randomising our mergedArray.
 //2. Making sure it's the right length.
+  for (var i = 0; i < mergedArray.length; i++) {
+    mergedArray = mergedArray[Math.floor(Math.random() * mergedArray.length)];
+  }
 }
-
 // Function to generate password with user input
 /*This function will have 2 nested functions:
 getPasswordOptions(), and
