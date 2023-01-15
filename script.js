@@ -103,9 +103,9 @@ variables of lowerCase, upperCase, specials and numerics.
 3. Merge the selected arrays.
 */
 function getPasswordOptions() {
-  var pwLength = prompt("Welcome to your password generator! How many characters would you like your password to have? Choose a number between 8 and 64 inclusive.");
+  pwLength = prompt("Welcome to your password generator! How many characters would you like your password to have? Choose a number between 8 and 64 inclusive.");
 //pwLength is now stored as a number. Next line is just to test this.
-console.log(pwLength);//Works, pwLength is stored ok, at least within the function.
+console.log(pwLength);//Works, pwLength is stored ok.
   if (pwLength < 8 || pwLength > 64) {
     alert("Your number is not in the correct range. Please try again.");
   }
@@ -147,25 +147,31 @@ However, can you apply DRY and turn the above into a function?
 
 getPasswordOptions();
 
-//test mergedArray is stored ok before randomising in the getRandom function:
+//test mergedArray is stored ok before randomising in getRandom function:
 console.log(mergedArray);//yes, displaying ok
-//test pwLength is stored ok before using in next function
-console.log(pwLength);//no, not displaying, saying undefined
+//test pwLength is stored ok before using in getRandom function
+console.log(pwLength);//yes, displaying ok
 // Function for getting a random element from an array
 function getRandom(arr) {
 //2 parts to this.
 //1. Randomising our mergedArray.
 //2. Making sure it's the right length.
+/*This is what has been tried so far and doesn't work.
+I think I need to look closer at this for loop and what I'm asking.
+e.g. just because pwLength is (say) 9, will this actually iterate 9 times?
+Or do I need to do something else?
+AND is the second half accurate and actually doing 
+what your brain is wanting it to do?!
+*/
   for (var i = 0; i < pwLength; i++) {
     mergedArray = mergedArray[Math.floor(Math.random() * mergedArray.pwLength)];
   }
 }
-
+//call the function:
 getRandom(mergedArray);
 
-//tests:
-console.log(mergedArray);//On the right lines but not randomised.
-console.log(pwLength);//not displaying, saying undefined.
+//test:
+console.log(mergedArray);//not showing at the moment
 
 // Function to generate password with user input
 /*This function will have 2 nested functions:
