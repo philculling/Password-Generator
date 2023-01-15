@@ -1,79 +1,37 @@
 # Password-Generator
 Week 5 Challenge
-# Module 5 Challenge: Password Generator
 
-## Overview
+Second practice with JavaScript
+## Description
+I wanted to create a password generator that would generate a randomised password to a specified length using characters from specified arrays. The length and arrays to be used were to be chosen by the user.
+This work would enable me to learn more use of JavaScript, especially functions.
+I wanted to improve on previous work by successfully adding my screenshot to this README!
+I wanted to reinforce good habits of commenting out, and frequent commits.
+I wanted to practise further my interaction with github.
+I wanted to deploy my finished product and check it had no errors.
+I wanted to practise writing an appropriate README.md.
 
-The password can include special characters. If you’re unfamiliar with these, see this [list of Password Special Characters from the OWASP Foundation](https://www.owasp.org/index.php/Password_special_characters).
+## Installation
+n/a
 
-## Instructions
+## Usage
 
-The following image shows the web application's appearance and functionality:
+When the website is viewed, the user is asked to choose:
+- number of characters in password
+- if they want to use lower case
+- if they want to use upper case
+- if they want to use special characters
+- if they want to use numeric characters
+The website will then create and display a randomised password based on the user's choices above.
 
-![password generator demo](./assets/05-javascript-challenge-demo.png)
+Site is published at https://philculling.github.io/Password-Generator
 
-* Generate a password when the button is clicked
-  * Present a series of prompts for password criteria
-    * Length of password. i.e. a prompt asking how many characters would you like your password to contain? The user inputs a number. If too small or large, they get another prompt saying to try again e.g. 7 is too few or 129 is too many.
-      * At least 10 characters but no more than 64.
-    * Character types
-      * Lowercase
-      * Uppercase
-      * Numeric
-      * Special characters ($@%&*, etc)
-      If your password is 16 characters long, you will need to set up a loop that iterates 16 times selecting random elements from all the selected arrays. If your password is 24 characters long, you will need to set up a loop that iterates 24 times, etc., etc.
- * Code should validate for each input and at least one character type should be selected
-  * Once prompts are answered then the password should be generated and displayed in an alert or written to the page
+Screenshot:
+![Screenshot](/"Screenshot of Password-Generator in progress")
 
-## Grading Requirements
-
-This challenge is graded based on the following criteria: 
-
-### Technical Acceptance Criteria: 40%
-
-* Satisfies all of the above acceptance criteria plus the following:
-
-  * The challenge should not produce any errors in the console when you inspect it using Chrome DevTools.
-
-### Deployment: 32%
-
-* Application deployed at live URL.
-
-* Application loads with no errors.
-
-* Application GitHub URL submitted.
-
-* GitHub repository that contains application code.
-
-### Application Quality: 15%
-
-* Application user experience is intuitive and easy to navigate.
-
-* Application user interface style is clean and polished.
-
-* Application resembles the mock-up functionality provided in the challenge instructions.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality README file with description, screenshot, and link to deployed application.
+## Credits
+Some help was provided by BCS tutoring.
 
 
-## Review
-
-You are required to submit the following for review:
-
-* The URL of the deployed application.
-
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
-
----
-
-© 2022 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+## License
+Please refer to the LICENSE in the repo.
