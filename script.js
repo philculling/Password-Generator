@@ -99,17 +99,18 @@ var mergedArray = "";
 1. The initial prompt that will result in establishing the password length
 2. 4 nested confirms that will establish true or false for each of the
 variables of lowerCase, upperCase, specials and numerics.
+3. Nested function to merge the selected arrays.
 */
 function getPasswordOptions() {
-  var length = prompt("Welcome to your password generator! How many characters would you like your password to have? Choose a number between 8 and 64 inclusive.");
+  var pwLength = prompt("Welcome to your password generator! How many characters would you like your password to have? Choose a number between 8 and 64 inclusive.");
 
-  if (length < 8 || length > 64) {
+  if (pwLength < 8 || pwLength > 64) {
     alert("Your number is not in the correct range. Please try again.");
   }
-  /*else if (length != type.number) {
+  /*else if (pwLength != type.number) {
     alert("Invalid. Please enter a number");//This needs another look
   }*/
-//length is now stored. I think...
+//pwLength is now stored. I think...
 
   var lowerCase = confirm("Would you like your password to include lower case characters?");
 //lowerCase is now stored as either true or false
@@ -122,23 +123,41 @@ function getPasswordOptions() {
 
   var numerics = confirm("Would you like your password to include numeric characters?");
 //numerics is now stored as either true or false
+console.log(lowerCase);//successfully tested, stored as true when selected.
+
+      if (lowerCase === true) {
+        mergedArray = mergedArray.concat(lowerCasedCharacters);
+      }
+      if (upperCase === true) {
+        mergedArray = mergedArray.concat(upperCasedCharacters);
+      }
+      if (specials === true) {
+        mergedArray =  mergedArray.concat(specialCharacters);
+      }
+      if (numerics === true) {
+        mergedArray = mergedArray.concat(numericCharacters);
+      }
+      //test
+      console.log(mergedArray);
+
+/*Now this is better can you apply DRY and turn into a function?
+Previously you tried this but it didn't work:
+This nested function updates the variable called mergedArray by
+adding all those which were selected at the confirm stage above.
+      function mergeArrays(arr) {
+        if (arr === true) {
+          mergedArray = mergedArray.concat(arr);
+          }
 }
-//this function updates the variable called mergedArray by
-//adding all those which were selected at the confirm stage above.
-function mergeArrays(arr) {
-  if (arr === true) {
-    mergedArray = mergedArray.concat(arr);
-  }
-}
-//This should call the function 4 times, resulting in mergedArray being correct.
+This should call the function 4 times, resulting in mergedArray being correct.
 mergeArrays(lowerCase);
 mergeArrays(upperCase);
 mergeArrays(specials);
 mergeArrays(numerics);
-
-//Test
-console.log(mergedArray);//Didn't work
-
+*/
+//Does mergedArray work outside the function? Test here:
+console.log(mergedArray);
+}
 getPasswordOptions();
 
 // Function for getting a random element from an array
@@ -146,8 +165,8 @@ function getRandom(arr) {
 //2 parts to this.
 //1. Randomising our mergedArray.
 //2. Making sure it's the right length.
-  for (var i = 0; i < mergedArray.length; i++) {
-    mergedArray = mergedArray[Math.floor(Math.random() * mergedArray.length)];
+  for (var i = 0; i < pwLength; i++) {
+    mergedArray = mergedArray[Math.floor(Math.random() * mergedArray.pwLength)];
   }
 }
 // Function to generate password with user input
