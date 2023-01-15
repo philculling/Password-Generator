@@ -88,36 +88,27 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-// Function to prompt user for password options
-/* This function, called getPasswordOptions, will have 
-1. The prompt
-2. 4 nested functions that will activate when called:
- the 4 yes/no functions.
-3. PLUS a final function to merge the (up to 4) arrays to create a
-new array.
-*/
-
 var lowerCase = "";
 var upperCase = "";
 var specials = "";
 var numerics = "";
 var mergedArray = "";
 
-function mergeArrays(arr) {
-  if (arr === true) {
-    mergedArray = mergedArray.push(arr);
-  }
-}
-
+// Function to prompt user for password options
+/* This function, called getPasswordOptions, should have 
+1. The initial prompt that will result in establishing the password length
+2. 4 nested confirms that will establish true or false for each of the
+variables of lowerCase, upperCase, specials and numerics.
+*/
 function getPasswordOptions() {
   var length = prompt("Welcome to your password generator! How many characters would you like your password to have? Choose a number between 8 and 64 inclusive.");
 
   if (length < 8 || length > 64) {
     alert("Your number is not in the correct range. Please try again.");
   }
-  else if (length != type.number) {
+  /*else if (length != type.number) {
     alert("Invalid. Please enter a number");//This needs another look
-  }
+  }*/
 //length is now stored. I think...
 
   var lowerCase = confirm("Would you like your password to include lower case characters?");
@@ -131,16 +122,28 @@ function getPasswordOptions() {
 
   var numerics = confirm("Would you like your password to include numeric characters?");
 //numerics is now stored as either true or false
-
+}
+//this function updates the variable called mergedArray by
+//adding all those which were selected at the confirm stage above.
+function mergeArrays(arr) {
+  if (arr === true) {
+    mergedArray = mergedArray.concat(arr);
+  }
+}
+//This should call the function 4 times, resulting in mergedArray being correct.
 mergeArrays(lowerCase);
 mergeArrays(upperCase);
 mergeArrays(specials);
 mergeArrays(numerics);
-}
+
+//Test
+console.log(mergedArray);//Didn't work
+
+getPasswordOptions();
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-//Hopefully this will be simple. 2 parts to this.
+//2 parts to this.
 //1. Randomising our mergedArray.
 //2. Making sure it's the right length.
   for (var i = 0; i < mergedArray.length; i++) {

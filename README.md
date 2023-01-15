@@ -8,9 +8,6 @@ The password can include special characters. If you’re unfamiliar with these, 
 
 ## Instructions
 
-Some sort of loop that will be (number of characters selected) long, and will select any random element from ALL of the selected arrays and log the answer in the place it is needed.
-
-
 The following image shows the web application's appearance and functionality:
 
 ![password generator demo](./assets/05-javascript-challenge-demo.png)
