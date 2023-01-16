@@ -106,7 +106,10 @@ var numOfRandoms = 0;
 1. Has the initial prompt that will result in establishing the password length
 2. Has 4 nested confirms that will establish true or false for each of the
 variables of lowerCase, upperCase, specials and numerics.
-3. Merges the selected arrays.
+3. Pushes 1 random character from each selection to the final array.
+4. Merges the selected arrays.
+5. Randomises the merged array to create final array.
+6. Removes the commas from final array using .join.
 */
 function getPasswordOptions() {
   pwLength = prompt("Welcome to your password generator! How many characters would you like your password to have? Choose a number between 8 and 64 inclusive.");
@@ -115,13 +118,11 @@ function getPasswordOptions() {
     alert("Your number is not in the correct range. Please try again.");
     return
   }
+  //Make sure user enters a number or it breaks.
   if (isNaN (pwLength) === true) {
     alert("Invalid. Please enter a number");
     return
   }
-  /*else if (pwLength != type.number) {
-     Come back to this. See Laura's Friday Slack notes.
-  }*/
 
   var lowerCase = confirm("Would you like your password to include lower case characters?");
   //lowerCase is now stored as either true or false
@@ -134,12 +135,13 @@ function getPasswordOptions() {
   //TEST
   console.log(lowerCase);//successfully tested, displays as true when selected and false when not.
 
+  //Make sure user chooses one option or it breaks.
   if (lowerCase === false && upperCase === false && specials === false && numerics === false) {
     alert("You must choose one option");
     return
   }
-  //for each selection, if selected, add 1 to numOfSelections, add the selction
-  //to mergedArray AND add 1 random element to firstItemsInArray.
+  //for each selection, if selected, add 1 random element to finalArray
+  //and reduce pwLength by 1 (because the random element has used 1 of the spaces)
   if (lowerCase === true) {
     finalArray.push(lowerCasedCharacters[Math.floor(Math.random()*lowerCasedCharacters.length)]);
     pwLength--;//copy this and line above, adapted, to all 4
@@ -164,14 +166,16 @@ function getPasswordOptions() {
   //TEST
   console.log(mergedArray);//Successfully updates mergedArray each time.
 
+  //Create finalArray by adding a randomised element from mergedArray
+  //the correct number of times.
   for (i = 0; i < pwLength; i++) {
       finalArray.push(mergedArray[Math.floor(Math.random()*mergedArray.length)]);
   };
+  //TEST
   console.log(finalArray);
-
+  //Remove commas from finalArray so it looks like a password.
   return finalArray.join("");
 }
-// DO NOT TOUCH ANYTHING BELOW HERE
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
 
