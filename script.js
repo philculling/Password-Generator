@@ -94,10 +94,12 @@ var specials = "";
 var numerics = "";
 var firstItemsInArray = "";
 var mergedArray = "";
+var randomisedMergedArray = "";
+var secondItemsInArray = "";
 var finalArray = "";
 var numOfSelections = 0;
 var pwLength
-var numOfIterations = 0;
+var numOfRandoms = 0;
 
 // Function called getPasswordOptions, to prompt user for password options
 /* This function: 
@@ -113,7 +115,7 @@ function getPasswordOptions() {
     alert("Your number is not in the correct range. Please try again.");
   }
   /*else if (pwLength != type.number) {
-    alert("Invalid. Please enter a number");//Come back to this. See Laura's Friday Slack notes.
+    alert("Invalid. Please enter a number"); Come back to this. See Laura's Friday Slack notes.
   }*/
 
   var lowerCase = confirm("Would you like your password to include lower case characters?");
@@ -123,31 +125,33 @@ function getPasswordOptions() {
   var specials = confirm("Would you like your password to include special characters?");
 //specials is now stored as either true or false
   var numerics = confirm("Would you like your password to include numeric characters?");
-//numerics is now stored as either true or false. Test:
+//numerics is now stored as either true or false.
+//TEST
 console.log(lowerCase);//successfully tested, displays as true when selected and false when not.
 
-//for each selection, if selected, add 1 to numOfSelections, and merge into array.
+//for each selection, if selected, add 1 to numOfSelections, add the selction
+//to mergedArray AND add 1 random element to firstItemsInArray.
       if (lowerCase === true) {
         numOfSelections++;
         mergedArray = mergedArray.concat(lowerCasedCharacters);
-        //also need to add a random element from lowerCasedCharacters to firstItemsInArray
+        firstItemsInArray = firstItemsInArray//+ 1 random selection from lowerCasedCharacters
       }
       if (upperCase === true) {
         numOfSelections++;
         mergedArray = mergedArray.concat(upperCasedCharacters);
-        //also need to add a random element from upperCasedCharacters to firstItemsInArray
+        firstItemsInArray = firstItemsInArray//+ 1 random selection from upperCasedCharacters
       }
       if (specials === true) {
         numOfSelections++;
         mergedArray =  mergedArray.concat(specialCharacters);
-        //also need to add a random element from specialCharacters to firstItemsInArray
+        firstItemsInArray = firstItemsInArray//+ 1 random selection from specialCharacters
       }
       if (numerics === true) {
         numOfSelections++;
         mergedArray = mergedArray.concat(numericCharacters);
-        //also need to add a random element from numericCharacters to firstItemsInArray
+        firstItemsInArray = firstItemsInArray//+ 1 random selection from numericCharacters
       }
-      //test
+      //TEST
       console.log(mergedArray);//Successfully updates mergedArray each time.
     }
 /*
@@ -156,42 +160,36 @@ However, can you apply DRY and turn the above into a function?
 
 getPasswordOptions();
 
-numOfIterations = (pwLength - numOfSelections);
-//check this is stored ok
-console.log (numOfIterations);//yes, displaying ok
+numOfRandoms = (pwLength - numOfSelections);
+//check this is stored ok. TEST
+console.log (numOfRandoms);//yes, displaying ok
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-//2 parts to this.
-//1. Randomising our mergedArray.
-//2. Making sure it's the right length.
-/*This is what has been tried so far and doesn't work.
-I think I need to look closer at this for loop and what I'm asking.
-e.g. just because numOfIterations is (say) 9, will this actually iterate 9 times?
-Or do I need to do something else?
-AND is the second half accurate and actually doing 
-what you want it to do?!
+/*
+Aim of this function is to change mergedArray into randomisedMergedArray.
+    randomisedMergedArray = arr[CODE TO RANDOMISE MERGED ARRAY; need help!]
 */
-  for (var i = 0; i < numOfIterations; i++) {
-    mergedArray = mergedArray[Math.floor(Math.random() * mergedArray.numOfIterations)];
-  }
 }
 //call the function:
 getRandom(mergedArray);
-//Update so that final array is first items + newly randomised merged
-finalArray = firstItemsInArray.concat(mergedArray);
-//tests:
-console.log(mergedArray);//not showing at the moment
-console.log(finalArray);//not showing yet
+
+secondItemsInArray = randomisedMergedArray.slice(0, numOfRandoms);
+//WILL THE ABOVE WORK OK?
+
+//Test what is working and what isn't by console logging.
+console.log(firstItemsInArray);//
+console.log(secondItemsInArray);//
+
+//Update so that final array is first + second sets of items
+finalArray = firstItemsInArray.concat(secondItemsInArray);
+//test:
+console.log(finalArray);
 
 // Function to generate password with user input
-/*This function will have 2 nested functions:
-getPasswordOptions(), and
-getRandom(arr) applied to the new, randomised, merged array.
-*/
 function generatePassword() {
 getPasswordOptions();
-//something that will turn the finalArray into the password
+//something that will turn the finalArray into the password? Not sure how they're linked.
 }
 // DO NOT TOUCH ANYTHING BELOW HERE
 // Get references to the #generate element
