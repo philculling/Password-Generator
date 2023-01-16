@@ -92,20 +92,23 @@ var lowerCase = "";
 var upperCase = "";
 var specials = "";
 var numerics = "";
+var firstItemsInArray = "";
 var mergedArray = "";
+var finalArray = "";
+var numOfSelections = 0;
 var pwLength
+var numOfIterations = 0;
 
-// Function to prompt user for password options
-/* This function, called getPasswordOptions, should have 
-1. The initial prompt that will result in establishing the password length
-2. 4 nested confirms that will establish true or false for each of the
+// Function called getPasswordOptions, to prompt user for password options
+/* This function: 
+1. Has the initial prompt that will result in establishing the password length
+2. Has 4 nested confirms that will establish true or false for each of the
 variables of lowerCase, upperCase, specials and numerics.
-3. Merge the selected arrays.
+3. Merges the selected arrays.
 */
 function getPasswordOptions() {
   pwLength = prompt("Welcome to your password generator! How many characters would you like your password to have? Choose a number between 8 and 64 inclusive.");
-//pwLength is now stored as a number. Next line is just to test this.
-console.log(pwLength);//Works, pwLength is stored ok.
+//pwLength is now stored as a number.
   if (pwLength < 8 || pwLength > 64) {
     alert("Your number is not in the correct range. Please try again.");
   }
@@ -115,28 +118,34 @@ console.log(pwLength);//Works, pwLength is stored ok.
 
   var lowerCase = confirm("Would you like your password to include lower case characters?");
 //lowerCase is now stored as either true or false
-  
   var upperCase = confirm("Would you like your password to include upper case characters?");
 //upperCase is now stored as either true or false
-
   var specials = confirm("Would you like your password to include special characters?");
 //specials is now stored as either true or false
-
   var numerics = confirm("Would you like your password to include numeric characters?");
-//numerics is now stored as either true or false
+//numerics is now stored as either true or false. Test:
 console.log(lowerCase);//successfully tested, displays as true when selected and false when not.
 
+//for each selection, if selected, add 1 to numOfSelections, and merge into array.
       if (lowerCase === true) {
+        numOfSelections++;
         mergedArray = mergedArray.concat(lowerCasedCharacters);
+        //also need to add a random element from lowerCasedCharacters to firstItemsInArray
       }
       if (upperCase === true) {
+        numOfSelections++;
         mergedArray = mergedArray.concat(upperCasedCharacters);
+        //also need to add a random element from upperCasedCharacters to firstItemsInArray
       }
       if (specials === true) {
+        numOfSelections++;
         mergedArray =  mergedArray.concat(specialCharacters);
+        //also need to add a random element from specialCharacters to firstItemsInArray
       }
       if (numerics === true) {
+        numOfSelections++;
         mergedArray = mergedArray.concat(numericCharacters);
+        //also need to add a random element from numericCharacters to firstItemsInArray
       }
       //test
       console.log(mergedArray);//Successfully updates mergedArray each time.
@@ -147,10 +156,10 @@ However, can you apply DRY and turn the above into a function?
 
 getPasswordOptions();
 
-//test mergedArray is stored ok before randomising in getRandom function:
-console.log(mergedArray);//yes, displaying ok
-//test pwLength is stored ok before using in getRandom function
-console.log(pwLength);//yes, displaying ok
+numOfIterations = (pwLength - numOfSelections);
+//check this is stored ok
+console.log (numOfIterations);//yes, displaying ok
+
 // Function for getting a random element from an array
 function getRandom(arr) {
 //2 parts to this.
@@ -158,20 +167,22 @@ function getRandom(arr) {
 //2. Making sure it's the right length.
 /*This is what has been tried so far and doesn't work.
 I think I need to look closer at this for loop and what I'm asking.
-e.g. just because pwLength is (say) 9, will this actually iterate 9 times?
+e.g. just because numOfIterations is (say) 9, will this actually iterate 9 times?
 Or do I need to do something else?
 AND is the second half accurate and actually doing 
-what your brain is wanting it to do?!
+what you want it to do?!
 */
-  for (var i = 0; i < pwLength; i++) {
-    mergedArray = mergedArray[Math.floor(Math.random() * mergedArray.pwLength)];
+  for (var i = 0; i < numOfIterations; i++) {
+    mergedArray = mergedArray[Math.floor(Math.random() * mergedArray.numOfIterations)];
   }
 }
 //call the function:
 getRandom(mergedArray);
-
-//test:
+//Update so that final array is first items + newly randomised merged
+finalArray = firstItemsInArray.concat(mergedArray);
+//tests:
 console.log(mergedArray);//not showing at the moment
+console.log(finalArray);//not showing yet
 
 // Function to generate password with user input
 /*This function will have 2 nested functions:
@@ -180,7 +191,7 @@ getRandom(arr) applied to the new, randomised, merged array.
 */
 function generatePassword() {
 getPasswordOptions();
-getRandom(mergedArray);
+//something that will turn the finalArray into the password
 }
 // DO NOT TOUCH ANYTHING BELOW HERE
 // Get references to the #generate element
