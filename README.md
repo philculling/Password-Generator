@@ -27,7 +27,7 @@ The website will then create and display a randomised password based on the user
 Site is published at https://philculling.github.io/Password-Generator
 
 Screenshot:
-![Screenshot](/Password-Generator/Screenshot%20of%20work%20in%20progress.png?raw=true "Screenshot of Password-Generator in progress")
+![Screenshot](./Screenshotofworkinprogress.png "Screenshot of Password-Generator in progress")
 
 ## Credits
 Some help was provided by BCS tutoring.

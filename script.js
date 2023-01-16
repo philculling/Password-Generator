@@ -93,10 +93,10 @@ var upperCase = "";
 var specials = "";
 var numerics = "";
 var firstItemsInArray = "";
-var mergedArray = "";
+var mergedArray = [];
 var randomisedMergedArray = "";
 var secondItemsInArray = "";
-var finalArray = "";
+var finalArray = [];
 var numOfSelections = 0;
 var pwLength
 var numOfRandoms = 0;
@@ -110,86 +110,66 @@ variables of lowerCase, upperCase, specials and numerics.
 */
 function getPasswordOptions() {
   pwLength = prompt("Welcome to your password generator! How many characters would you like your password to have? Choose a number between 8 and 64 inclusive.");
-//pwLength is now stored as a number.
+  //pwLength is now stored as a number.
   if (pwLength < 8 || pwLength > 64) {
     alert("Your number is not in the correct range. Please try again.");
+    return
+  }
+  if (isNaN (pwLength) === true) {
+    alert("Invalid. Please enter a number");
+    return
   }
   /*else if (pwLength != type.number) {
-    alert("Invalid. Please enter a number"); Come back to this. See Laura's Friday Slack notes.
+     Come back to this. See Laura's Friday Slack notes.
   }*/
 
   var lowerCase = confirm("Would you like your password to include lower case characters?");
-//lowerCase is now stored as either true or false
+  //lowerCase is now stored as either true or false
   var upperCase = confirm("Would you like your password to include upper case characters?");
-//upperCase is now stored as either true or false
+  //upperCase is now stored as either true or false
   var specials = confirm("Would you like your password to include special characters?");
-//specials is now stored as either true or false
+  //specials is now stored as either true or false
   var numerics = confirm("Would you like your password to include numeric characters?");
-//numerics is now stored as either true or false.
-//TEST
-console.log(lowerCase);//successfully tested, displays as true when selected and false when not.
+  //numerics is now stored as either true or false.
+  //TEST
+  console.log(lowerCase);//successfully tested, displays as true when selected and false when not.
 
-//for each selection, if selected, add 1 to numOfSelections, add the selction
-//to mergedArray AND add 1 random element to firstItemsInArray.
-      if (lowerCase === true) {
-        numOfSelections++;
-        mergedArray = mergedArray.concat(lowerCasedCharacters);
-        firstItemsInArray = firstItemsInArray//+ 1 random selection from lowerCasedCharacters
-      }
-      if (upperCase === true) {
-        numOfSelections++;
-        mergedArray = mergedArray.concat(upperCasedCharacters);
-        firstItemsInArray = firstItemsInArray//+ 1 random selection from upperCasedCharacters
-      }
-      if (specials === true) {
-        numOfSelections++;
-        mergedArray =  mergedArray.concat(specialCharacters);
-        firstItemsInArray = firstItemsInArray//+ 1 random selection from specialCharacters
-      }
-      if (numerics === true) {
-        numOfSelections++;
-        mergedArray = mergedArray.concat(numericCharacters);
-        firstItemsInArray = firstItemsInArray//+ 1 random selection from numericCharacters
-      }
-      //TEST
-      console.log(mergedArray);//Successfully updates mergedArray each time.
-    }
-/*
-However, can you apply DRY and turn the above into a function?
-*/
+  if (lowerCase === false && upperCase === false && specials === false && numerics === false) {
+    alert("You must choose one option");
+    return
+  }
+  //for each selection, if selected, add 1 to numOfSelections, add the selction
+  //to mergedArray AND add 1 random element to firstItemsInArray.
+  if (lowerCase === true) {
+    finalArray.push(lowerCasedCharacters[Math.floor(Math.random()*lowerCasedCharacters.length)]);
+    pwLength--;//copy this and line above, adapted, to all 4
+    mergedArray = mergedArray.concat(lowerCasedCharacters);
+    firstItemsInArray = firstItemsInArray//+ 1 random selection from lowerCasedCharacters
+  }
+  if (upperCase === true) {
+    numOfSelections++;
+    mergedArray = mergedArray.concat(upperCasedCharacters);
+    firstItemsInArray = firstItemsInArray//+ 1 random selection from upperCasedCharacters
+  }
+  if (specials === true) {
+    numOfSelections++;
+    mergedArray = mergedArray.concat(specialCharacters);
+    firstItemsInArray = firstItemsInArray//+ 1 random selection from specialCharacters
+  }
+  if (numerics === true) {
+    numOfSelections++;
+    mergedArray = mergedArray.concat(numericCharacters);
+    firstItemsInArray = firstItemsInArray//+ 1 random selection from numericCharacters
+  }
+  //TEST
+  console.log(mergedArray);//Successfully updates mergedArray each time.
 
-getPasswordOptions();
+  for (i = 0; i < pwLength; i++) {
+      finalArray.push(mergedArray[Math.floor(Math.random()*mergedArray.length)]);
+  };
+  console.log(finalArray);
 
-numOfRandoms = (pwLength - numOfSelections);
-//check this is stored ok. TEST
-console.log (numOfRandoms);//yes, displaying ok
-
-// Function for getting a random element from an array
-function getRandom(arr) {
-/*
-Aim of this function is to change mergedArray into randomisedMergedArray.
-    randomisedMergedArray = arr[CODE TO RANDOMISE MERGED ARRAY; need help!]
-*/
-}
-//call the function:
-getRandom(mergedArray);
-
-secondItemsInArray = randomisedMergedArray.slice(0, numOfRandoms);
-//WILL THE ABOVE WORK OK?
-
-//Test what is working and what isn't by console logging.
-console.log(firstItemsInArray);//
-console.log(secondItemsInArray);//
-
-//Update so that final array is first + second sets of items
-finalArray = firstItemsInArray.concat(secondItemsInArray);
-//test:
-console.log(finalArray);
-
-// Function to generate password with user input
-function generatePassword() {
-getPasswordOptions();
-//something that will turn the finalArray into the password? Not sure how they're linked.
+  return finalArray.join("");
 }
 // DO NOT TOUCH ANYTHING BELOW HERE
 // Get references to the #generate element
@@ -197,7 +177,7 @@ var generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var password = getPasswordOptions();
   var passwordText = document.querySelector('#password');
 
   passwordText.value = password;
