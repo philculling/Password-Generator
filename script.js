@@ -106,9 +106,9 @@ var numOfRandoms = 0;
 1. Has the initial prompt that will result in establishing the password length
 2. Has 4 nested confirms that will establish true or false for each of the
 variables of lowerCase, upperCase, specials and numerics.
-3. Pushes 1 random character from each selection to the final array.
+3. Pushes 1 random character from each selection to the final array which I set up earlier.
 4. Merges the selected arrays.
-5. Randomises the merged array to create final array.
+5. Randomises the merged array to create the final array.
 6. Removes the commas from final array using .join.
 */
 function getPasswordOptions() {
@@ -140,39 +140,38 @@ function getPasswordOptions() {
     alert("You must choose one option");
     return
   }
-  //for each selection, if selected, add 1 random element to finalArray
-  //and reduce pwLength by 1 (because the random element has used 1 of the spaces)
+  /*For each selection, if selected, add 1 random element to finalArray
+  and reduce pwLength by 1 (because the random element has used 1 of the spaces)*/
   if (lowerCase === true) {
     finalArray.push(lowerCasedCharacters[Math.floor(Math.random()*lowerCasedCharacters.length)]);
-    pwLength--;//copy this and line above, adapted, to all 4
+    pwLength--;
     mergedArray = mergedArray.concat(lowerCasedCharacters);
-    firstItemsInArray = firstItemsInArray//+ 1 random selection from lowerCasedCharacters
   }
   if (upperCase === true) {
-    numOfSelections++;
+    finalArray.push(upperCasedCharacters[Math.floor(Math.random()*upperCasedCharacters.length)]);
+    pwLength--;
     mergedArray = mergedArray.concat(upperCasedCharacters);
-    firstItemsInArray = firstItemsInArray//+ 1 random selection from upperCasedCharacters
   }
   if (specials === true) {
-    numOfSelections++;
+    finalArray.push(specialCharacters[Math.floor(Math.random()*specialCharacters.length)]);
+    pwLength--;
     mergedArray = mergedArray.concat(specialCharacters);
-    firstItemsInArray = firstItemsInArray//+ 1 random selection from specialCharacters
   }
   if (numerics === true) {
-    numOfSelections++;
+    finalArray.push(numericCharacters[Math.floor(Math.random()*numericCharacters.length)]);
+    pwLength--;
     mergedArray = mergedArray.concat(numericCharacters);
-    firstItemsInArray = firstItemsInArray//+ 1 random selection from numericCharacters
   }
   //TEST
   console.log(mergedArray);//Successfully updates mergedArray each time.
 
-  //Create finalArray by adding a randomised element from mergedArray
-  //the correct number of times.
+  /*Update finalArray by adding a randomised element from mergedArray
+  the correct number of times.*/
   for (i = 0; i < pwLength; i++) {
       finalArray.push(mergedArray[Math.floor(Math.random()*mergedArray.length)]);
   };
   //TEST
-  console.log(finalArray);
+  console.log(finalArray);//This works.
   //Remove commas from finalArray so it looks like a password.
   return finalArray.join("");
 }
