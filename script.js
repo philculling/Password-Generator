@@ -98,7 +98,7 @@ var randomisedMergedArray = "";
 var secondItemsInArray = "";
 var finalArray = [];
 var numOfSelections = 0;
-var pwLength
+//var pwLength
 var numOfRandoms = 0;
 
 // Function called getPasswordOptions, to prompt user for password options
@@ -142,6 +142,11 @@ function getPasswordOptions() {
   }
   /*For each selection, if selected, add 1 random element to finalArray
   and reduce pwLength by 1 (because the random element has used 1 of the spaces)*/
+
+  for (i = 0; i < pwLength; i++) {
+    finalArray.shift();
+  }
+
   if (lowerCase === true) {
     finalArray.push(lowerCasedCharacters[Math.floor(Math.random()*lowerCasedCharacters.length)]);
     pwLength--;
@@ -167,7 +172,7 @@ function getPasswordOptions() {
 
   /*Update finalArray by adding a randomised element from mergedArray
   the correct number of times.*/
-  for (i = 0; i < pwLength; i++) {
+  for (j = 0; j < pwLength; j++) {
       finalArray.push(mergedArray[Math.floor(Math.random()*mergedArray.length)]);
   };
   //TEST
