@@ -88,30 +88,10 @@ var upperCasedCharacters = [
   'Z'
 ];
 
-var lowerCase = "";
-var upperCase = "";
-var specials = "";
-var numerics = "";
-var firstItemsInArray = "";
 var mergedArray = [];
-var randomisedMergedArray = "";
-var secondItemsInArray = "";
-var finalArray = [];
-var numOfSelections = 0;
-//var pwLength
-var numOfRandoms = 0;
 
-// Function called getPasswordOptions, to prompt user for password options
-/* This function: 
-1. Has the initial prompt that will result in establishing the password length
-2. Has 4 nested confirms that will establish true or false for each of the
-variables of lowerCase, upperCase, specials and numerics.
-3. Pushes 1 random character from each selection to the final array which I set up earlier.
-4. Merges the selected arrays.
-5. Randomises the merged array to create the final array.
-6. Removes the commas from final array using .join.
-*/
 function getPasswordOptions() {
+  var finalArray = [];
   pwLength = prompt("Welcome to your password generator! How many characters would you like your password to have? Choose a number between 8 and 64 inclusive.");
   //pwLength is now stored as a number.
   if (pwLength < 8 || pwLength > 64) {
@@ -187,9 +167,7 @@ var generateBtn = document.querySelector('#generate');
 function writePassword() {
   var password = getPasswordOptions();
   var passwordText = document.querySelector('#password');
-
   passwordText.value = password;
 }
-
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
